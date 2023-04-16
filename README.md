@@ -9,6 +9,7 @@ This project is a simple web application to submit PayForBlob transactions to a 
 - Generate a random namespace ID
 - Submit PayForBlob transactions to a specified node
 - Verify the submitted transaction
+- Use proxied request to overcome CORS restrictions
 
 ## Prerequisites
 

@@ -7,7 +7,7 @@ if (isset($_POST['namespace_id'])) {
     header('Content-Type: application/json');
 
     $namespace_id = $_POST['namespace_id'] ?? '';
-    $data = $_POST['data'] ?? '';
+    $data = (string)$_POST['data'] ?? '';
     $gas_limit = (int)$_POST['gas_limit'] ?? '';
     $fee = (int)$_POST['fee'] ?? '';
 

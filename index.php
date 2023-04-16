@@ -31,7 +31,7 @@
 
             <div class="mb-4">
                 <label for="output-data" class="block mb-2">Output data:</label>
-                <textarea id="output-data" rows="4" cols="50" class="w-full p-2 border rounded-md" placeholder="This is the hex encoded data to be submitted"></textarea>
+                <textarea id="output-data" rows="4" cols="50" class="w-full p-2 border rounded-md" placeholder="This is the hex encoded data to be submitted. Use the helper encoder to encode text, number or URL, or simply paste the encoded hex string into this box."></textarea>
             </div>
 
             <div class="mb-4">
@@ -64,14 +64,13 @@
             const data = $('#output-data').val();
             const node_url = $('#node-url').val();
 
-            const hexEncodeRegex = /^[0-9a-fA-F]+$/;
-            if (!hexEncodeRegex.test(data)) {
-                alert('Data is not a valid hex encoded string.');
+            if (data.trim() === '') {
+                alert('Data cannot be empty.');
                 return;
             }
 
-            if (data.trim() === '') {
-                alert('Data cannot be empty.');
+            if (!isValidHexString(data)) {
+                alert('Data is not a valid hex encoded string.');
                 return;
             }
 
@@ -135,6 +134,11 @@
         } catch (_) {
             return false;
         }
+    }
+
+    function isValidHexString(hexString) {
+        const hexEncodeRegex = /^[0-9a-fA-F]+$/;
+        return hexString.length % 2 === 0 && hexEncodeRegex.test(hexString);
     }
 
     function hexEncode(str) {
